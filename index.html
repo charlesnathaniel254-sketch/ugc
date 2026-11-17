@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UGC Maker Machine - ContentReward</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        h1 { color: #38bdf8; text-align: center; margin-bottom: 5px; }
+        p.subtitle { text-align: center; color: #94a3b8; margin-bottom: 30px; }
+        label { font-weight: bold; display: block; margin-top: 15px; color: #cbd5e1; }
+        input, select, textarea { width: 100%; padding: 12px; margin-top: 5px; border-radius: 6px; border: 1px solid #334155; background-color: #0f172a; color: #fff; box-sizing: border-box; font-size: 14px; }
+        button { background-color: #38bdf8; color: #0f172a; font-weight: bold; font-size: 16px; padding: 14px; border: none; border-radius: 6px; width: 100%; margin-top: 25px; cursor: pointer; transition: 0.2s; }
+        button:hover { background-color: #7dd3fc; }
+        .output-box { margin-top: 30px; background-color: #0f172a; padding: 20px; border-radius: 8px; border: 1px solid #334155; display: none; }
+        textarea.result-text { height: 250px; font-family: monospace; }
+        .copy-btn { background-color: #22c55e; margin-top: 10px; color: white; }
+        .copy-btn:hover { background-color: #4ade80; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎬 UGC Maker Machine</h1>
+    <p class="subtitle">Generate high-converting scripts & visuals for ContentReward.com</p>
+
+    <label for="product">Product / App / Topic Name:</label>
+    <input type="text" id="product" placeholder="e.g. Crypto Pay App, Fitness Gummies, Web3 Game">
+
+    <label for="audience">Target Audience:</label>
+    <input type="text" id="audience" placeholder="e.g. Gen Z Gamers, Busy Moms, Crypto Investors">
+
+    <label for="tone">Vibe / Style:</label>
+    <select id="tone">
+        <option value="Honest & Relatable (Talking Head)">Honest & Relatable (Talking Head)</option>
+        <option value="High Energy / Hype Viral">High Energy / Hype Viral</option>
+        <option value="Problem vs Solution Storytelling">Problem vs Solution Storytelling</option>
+        <option value="Faceless Aesthetics + Voiceover">Faceless Aesthetics + Voiceover</option>
+    </select>
+
+    <label for="length">Video Duration:</label>
+    <select id="length">
+        <option value="15-30 seconds">15-30 seconds (Short/Viral)</option>
+        <option value="30-60 seconds">30-60 seconds (Detailed/Review)</option>
+    </select>
+
+    <button onclick="generatePrompt()">🚀 Generate Prompt for AI</button>
+
+    <div class="output-box" id="outputBox">
+        <h3>📋 Your UGC Prompt is Ready!</h3>
+        <p>Copy the prompt below and paste it into ChatGPT, Claude, or your favorite AI tool to generate your script:</p>
+        <textarea id="promptResult" class="result-text" readonly></textarea>
+        <button class="copy-btn" onclick="copyPrompt()">📋 Copy Prompt to Clipboard</button>
+    </div>
+</div>
+
+<script>
+    function generatePrompt() {
+        const product = document.getElementById('product').value || 'The Product';
+        const audience = document.getElementById('audience').value || 'General Audience';
+        const tone = document.getElementById('tone').value;
+        const length = document.getElementById('length').value;
+
+        const promptText = `Act as an expert UGC (User Generated Content) Creator and Viral Marketing Strategist. Create a full UGC Content Package optimized for ContentReward.com.
+
+DETAILS:
+- Product/Topic: ${product}
+- Target Audience: ${audience}
+- Tone/Vibe: ${tone}
+- Duration: ${length}
+
+OUTPUT REQUIREMENTS:
+1. 3 SCROLL-STOPPING HOOKS (Include Visual action + Audio text for the first 3 seconds)
+2. FULL TIMED UGC SCRIPT (Format: Timecode | Visual Shot | Voiceover Script | On-Screen Text)
+3. B-ROLL & VISUAL SUGGESTIONS (What clips or stock footage to record)
+4. HIGH-CONVERTING CAPTION & 5 HASHTAGS (Optimized for maximum reward payouts)
+
+Make it sound natural, human, and convincing!`;
+
+        document.getElementById('promptResult').value = promptText;
+        document.getElementById('outputBox').style.display = 'block';
+    }
+
+    function copyPrompt() {
+        const copyText = document.getElementById('promptResult');
+        copyText.select();
+        document.execCommand('copy');
+        alert('Prompt copied! Now paste it into ChatGPT or Claude.');
+    }
+</script>
+
+</body>
+</html>
